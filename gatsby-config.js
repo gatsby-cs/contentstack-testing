@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -13,6 +17,14 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: "gatsby-source-contentstack",
+      options: {
+        api_key: process.env.CONTENTSTACK_API_KEY,
+        delivery_token: process.env.CONTENTSTACK_DELIVERY_TOKEN,
+        environment: process.env.CONTENTSTACK_ENVIRONMENT,
       },
     },
     `gatsby-transformer-sharp`,
